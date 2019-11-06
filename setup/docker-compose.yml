@@ -6,7 +6,7 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 192.168.61.0/24
+        - subnet: 192.168.62.0/24
 
 volumes:
   cs-ansible:
@@ -15,12 +15,12 @@ services:
   control:
     image: codespaces/ansible-control:v1.0
     ports:
-      - "8000:8000"
+      - "8001:8000"
     volumes:
       - cs-ansible:/workspace
     networks:
       custom:
-        ipv4_address: 192.168.61.10
+        ipv4_address: 192.168.62.10
     dns: 8.8.8.8
     domainname: codespaces.io
     hostname: control
@@ -28,10 +28,10 @@ services:
   frontend:
     image: codespaces/ansible-node-ubuntu-1404:v0.1.0
     ports:
-       - "80:8079"
+       - "7000:8079"
     networks:
       custom:
-        ipv4_address: 192.168.61.11
+        ipv4_address: 192.168.62.11
     dns: 8.8.8.8
     domainname: codespaces.io
     hostname: frontend
@@ -42,7 +42,7 @@ services:
        - "7081:80"
     networks:
       custom:
-        ipv4_address: 192.168.61.12
+        ipv4_address: 192.168.62.12
     dns: 8.8.8.8
     domainname: codespaces.io
     hostname: catalogue
@@ -53,7 +53,7 @@ services:
       - "8081:80"
     networks:
       custom:
-        ipv4_address: 192.168.61.13
+        ipv4_address: 192.168.62.13
     dns: 8.8.8.8
     domainname: codespaces.io
     hostname: carts
@@ -72,7 +72,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       custom:
-        ipv4_address: 192.168.61.15
+        ipv4_address: 192.168.62.15
     dns: 8.8.8.8
     domainname: codespaces.io
     hostname: jenkins
